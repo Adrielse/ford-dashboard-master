@@ -1,0 +1,26 @@
+<main>
+    <div class="left">
+      <img src="assets/images/ranger.png" alt="Ford Ranger">
+    </div>
+    <div class="formulario">
+      <img src="assets/images/ford.png" alt="Ford Logo">
+      <form (ngSubmit)="onSubmit()">
+        <h1 style="color: green;">Boas-vindas</h1>
+        <input type="text" class="input-icone" placeholder="insira seu e-mail" 
+               [(ngModel)]="username" name="username" required>
+        <input type="password" class="input-icone1" id="password" 
+               placeholder="insira sua senha" [(ngModel)]="password" name="password" required>
+        <div class="switch-container">
+          <span class="aviso">login automatico</span>
+          <label class="switch">
+            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <button type="submit" class="button1" style="color: aliceblue;">Entrar</button>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div> 
+  </main>
