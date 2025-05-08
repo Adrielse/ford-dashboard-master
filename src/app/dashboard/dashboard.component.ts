@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
       connected: 133,
       softwareUpdated: 112,
       imageUrl: '/images/territory.png',
-      totalSales: 856 // Total único para Territory
+      totalSales: 856 
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
       connected: 421,
       softwareUpdated: 120,
       imageUrl: '/images/mustang.png',
-      totalSales: 432 // Total único para Mustang
+      totalSales: 432 
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
       connected: 202,
       softwareUpdated: 112,
       imageUrl: '/images/broncoSport.png',
-      totalSales: 255 // Total único para Bronco
+      totalSales: 255 
     }
   ];
   
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   connectedVehicles = 0;
   updatedVehicles = 0;
 
-  // Dados de exemplo para VehicleData
+  
   vehicleDataList: VehicleData[] = [
     {
       vin: '2FRHDUYS2Y63NHD22454',
@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit {
   }
 
   calculateGeneralMetrics(): void {
-    // Calcula totais gerais
+
     this.currentTotalSales = this.vehicles.reduce((sum, v) => sum + (v.totalSales || 0), 0);
     this.connectedVehicles = this.vehicles.reduce((sum, v) => sum + (v.connected || 0), 0);
     this.updatedVehicles = this.vehicles.reduce((sum, v) => sum + (v.softwareUpdated || 0), 0);
@@ -149,7 +149,7 @@ export class DashboardComponent implements OnInit {
       this.vehicleData = this.vehicleDataList.find(vd => 
         vd.vin.startsWith(this.getVinPrefix(vehicle.model))) || null;
     } else {
-      // Volta aos totais gerais
+     
       this.calculateGeneralMetrics();
     }
   }
@@ -172,12 +172,12 @@ export class DashboardComponent implements OnInit {
 
     const formattedVin = this.formatVin(this.searchVin);
     
-    // Simula busca na API
+
     setTimeout(() => {
       const foundData = this.vehicleDataList.find(vd => vd.vin === formattedVin);
       if (foundData) {
         this.vehicleData = foundData;
-        // Encontra o veículo correspondente
+   
         const vehicle = this.vehicles.find(v => 
           this.getVinPrefix(v.model) === formattedVin.substring(0, 3));
         if (vehicle) {
