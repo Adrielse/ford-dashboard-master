@@ -3,9 +3,10 @@ export interface Vehicle {
     model: string;
     year: number;
     price: number;
-    connected: boolean;
-    softwareUpdated: boolean;
+    connected: number;
+    softwareUpdated: number;
     imageUrl: string;
+    totalSales:number
   }
   
   export interface VehicleData {

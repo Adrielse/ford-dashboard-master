@@ -15,59 +15,183 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent implements OnInit {
   searchControl = new FormControl();
-  vehicles: Vehicle[] = [];
+  vehicles: Vehicle[] = [
+    {
+      id: 1,
+      model: 'Territory',
+      year: 2023,
+      price: 250000,
+      connected: 133,
+      softwareUpdated: 112,
+      imageUrl: '/images/territory.png',
+      totalSales: 856 // Total único para Territory
+    },
+    {
+      id: 2,
+      model: 'Mustang',
+      year: 2023,
+      price: 350000,
+      connected: 421,
+      softwareUpdated: 120,
+      imageUrl: '/images/mustang.png',
+      totalSales: 432 // Total único para Mustang
+    },
+    {
+      id: 3,
+      model: 'Bronco',
+      year: 2023,
+      price: 300000,
+      connected: 202,
+      softwareUpdated: 112,
+      imageUrl: '/images/broncoSport.png',
+      totalSales: 255 // Total único para Bronco
+    }
+  ];
+  
   selectedVehicle: Vehicle | null = null;
   vehicleData: VehicleData | null = null;
   searchVin = '';
   
-  totalSales = 0;
+  // Variáveis para exibição
+  currentTotalSales = 0;
   connectedVehicles = 0;
   updatedVehicles = 0;
 
+  // Dados de exemplo para VehicleData
+  vehicleDataList: VehicleData[] = [
+    {
+      vin: '2FRHDUYS2Y63NHD22454',
+      odometer: 12500,
+      tirePressure: '32 psi',
+      status: 'Em movimento',
+      batteryStatus: 'Carregado',
+      fuelLevel: 78,
+      lat: -23.5505,
+      long: -46.6333
+    },
+    {
+      vin: '1FM5K8D84HGA12345',
+      odometer: 8700,
+      tirePressure: '34 psi',
+      status: 'Estacionado',
+      batteryStatus: 'Carregando',
+      fuelLevel: 45,
+      lat: -22.9068,
+      long: -43.1729
+    },
+    {
+      vin: '3GNAXHEV5JL123456',
+      odometer: 15300,
+      tirePressure: '31 psi',
+      status: 'Em manutenção',
+      batteryStatus: 'Descarga',
+      fuelLevel: 22,
+      lat: -34.6037,
+      long: -58.3816
+    }
+  ];
+
   constructor(
     private vehicleService: VehicleService,
-    private router: Router
+    public router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loadInitialData();
+    this.calculateGeneralMetrics();
+
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term => this.vehicleService.searchVehicles(term))
-    ).subscribe(vehicles => {
-      this.vehicles = vehicles;
+    ).subscribe({
+      next: (vehicles) => {
+        this.vehicles = vehicles;
+        this.calculateGeneralMetrics();
+      },
+      error: (err) => {
+        console.error('Erro ao buscar veículos:', err);
+        this.calculateGeneralMetrics();
+      }
     });
-
-    this.loadInitialData();
   }
 
   loadInitialData(): void {
-    this.vehicleService.getVehicles().subscribe(vehicles => {
-      this.vehicles = vehicles;
-      this.calculateMetrics(vehicles);
+    this.vehicleService.getVehicles().subscribe({
+      next: (vehicles) => {
+        this.vehicles = vehicles.length > 0 ? vehicles : this.vehicles;
+        this.calculateGeneralMetrics();
+      },
+      error: (err) => {
+        console.error('Erro ao carregar veículos:', err);
+        this.calculateGeneralMetrics();
+      }
     });
   }
 
-  calculateMetrics(vehicles: Vehicle[]): void {
-    this.totalSales = vehicles.length;
-    this.connectedVehicles = vehicles.filter(v => v.connected).length;
-    this.updatedVehicles = vehicles.filter(v => v.softwareUpdated).length;
+  calculateGeneralMetrics(): void {
+    // Calcula totais gerais
+    this.currentTotalSales = this.vehicles.reduce((sum, v) => sum + (v.totalSales || 0), 0);
+    this.connectedVehicles = this.vehicles.reduce((sum, v) => sum + (v.connected || 0), 0);
+    this.updatedVehicles = this.vehicles.reduce((sum, v) => sum + (v.softwareUpdated || 0), 0);
   }
 
-  selectVehicle(vehicle: Vehicle): void {
+  selectVehicle(vehicle: Vehicle | null): void {
     this.selectedVehicle = vehicle;
-    // Atualizar métricas baseadas no veículo selecionado
-    this.totalSales = 1;
-    this.connectedVehicles = vehicle.connected ? 1 : 0;
-    this.updatedVehicles = vehicle.softwareUpdated ? 1 : 0;
+    
+    if (vehicle) {
+      // Mostra os dados específicos do veículo selecionado
+      this.currentTotalSales = vehicle.totalSales;
+      this.connectedVehicles = vehicle.connected;
+      this.updatedVehicles = vehicle.softwareUpdated;
+      
+      // Encontra os dados do veículo correspondente
+      this.vehicleData = this.vehicleDataList.find(vd => 
+        vd.vin.startsWith(this.getVinPrefix(vehicle.model))) || null;
+    } else {
+      // Volta aos totais gerais
+      this.calculateGeneralMetrics();
+    }
+  }
+
+  // Helper para gerar prefixo de VIN baseado no modelo
+  private getVinPrefix(model: string): string {
+    switch(model.toLowerCase()) {
+      case 'territory': return '2FR';
+      case 'mustang': return '1FM';
+      case 'bronco': return '3GN';
+      default: return '';
+    }
   }
 
   searchVehicleData(): void {
-    if (this.searchVin) {
-      this.vehicleService.getVehicleData(this.searchVin).subscribe(data => {
-        this.vehicleData = data;
-      });
+    if (!this.searchVin) {
+      alert('Por favor, insira um código VIN válido');
+      return;
     }
+
+    const formattedVin = this.formatVin(this.searchVin);
+    
+    // Simula busca na API
+    setTimeout(() => {
+      const foundData = this.vehicleDataList.find(vd => vd.vin === formattedVin);
+      if (foundData) {
+        this.vehicleData = foundData;
+        // Encontra o veículo correspondente
+        const vehicle = this.vehicles.find(v => 
+          this.getVinPrefix(v.model) === formattedVin.substring(0, 3));
+        if (vehicle) {
+          this.selectVehicle(vehicle);
+        }
+      } else {
+        alert('VIN não encontrado');
+        this.vehicleData = null;
+      }
+    }, 500);
+  }
+
+  private formatVin(vin: string): string {
+    return vin.trim().toUpperCase();
   }
 
   logout(): void {
