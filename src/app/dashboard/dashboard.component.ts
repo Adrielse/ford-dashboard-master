@@ -14,6 +14,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+      openNav(): void {
+    document.getElementById("mySidenav")!.style.width = "250px";
+    document.getElementById("main")!.style.marginLeft = "250px";
+  }
+
+  closeNav(): void {
+    document.getElementById("mySidenav")!.style.width = "0";
+    document.getElementById("main")!.style.marginLeft = "0";
+  }
   searchControl = new FormControl();
   vehicles: Vehicle[] = [
     {
@@ -198,4 +207,9 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('isLoggedIn');
     this.router.navigate(['/login']);
   }
+ home(): void {
+    this.router.navigate(['/home']);
+  }
 }
+
+

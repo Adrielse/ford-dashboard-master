@@ -1,12 +1,16 @@
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <img src="images/ford.png" class="imgf" alt="Ford Logo">
+    <a  (click)="home()" style="color: green;" >home</a>
+    <a routerLink="/dashboard" class="active"style="color: green; ">dashboard</a>
+  </div>
+  <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+  
+
+
+
 <div class="dashboard-container">
-  <!-- Cabeçalho e navegação -->
-  <header>
-    <h1 style="color: rgb(3, 3, 112);">Dashboard Ford</h1>
-    <div class="header-actions">
-      <button class="nav-button" (click)="router.navigate(['/home'])">Home</button>
-      <button class="nav-button logout" (click)="logout()">Logout</button>
-    </div>
-  </header>
+ 
 
   <!-- Seletor de Veículo -->
   <div class="vehicle-selector">
