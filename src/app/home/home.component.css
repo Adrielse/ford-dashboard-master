@@ -7,39 +7,53 @@ justify-content: center;
 margin-top: 200px;
  }
 
- .modal-welcome {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 100px 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    z-index: 10;
-    min-width: 300px;
-    max-width: 100%;
-    
+ /* Modal sobre a imagem */
+.modal {
+  position: relative;
+  z-index: 1;
+  width: 440px;
+  height: 450px;
+  background-color: rgba(255, 255, 255, 0.863);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  flex-direction: column;
 }
 
-/* Agora o header faz parte do modal */
+/* Cabeçalho */
 .modal-header {
- 
-   
-    font-size: 20px;
-    font-weight: bold;
-    color: #1a1a1a;
-    margin-bottom: 150px;
-    border-bottom: 2px solid #373838;
-    border-width: 100%;
-    padding-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
 }
 
-/* Conteúdo */
-.modal-content span {
-    font-size: 24px;
-    color: rgb(22, 129, 230);
+/* Corpo */
+.modal-body {
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
+
+.modal-body a {
+  text-decoration: none;
+  color: #1a73e8;
+  font-weight: bold;
+  font-size: 16px;
+}
+.modal-body a:hover {
+  text-decoration: underline;
+}.full-background {
+  top: 1;
+  background-image: url('/images/ranger.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  z-index: 0;
+  width: 70%;
+}
+
 
 .sidenav {
     height: 100%; /* 100% Full-height */

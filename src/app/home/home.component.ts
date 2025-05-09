@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+ 
+ 
   openNav(): void {
     document.getElementById("mySidenav")!.style.width = "250px";
     document.getElementById("main")!.style.marginLeft = "250px";
