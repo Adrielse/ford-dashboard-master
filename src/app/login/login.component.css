@@ -148,3 +148,83 @@ form input{
   .password-toggle-icon i:hover {
     color: #000;
   }
+
+@media (max-width: 1024px) {
+  main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .formulario {
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .formulario img {
+    margin: 0 auto 20px auto;
+    display: block;
+    width: 30%;
+  }
+
+  .left img {
+    margin: 20px auto;
+    display: block;
+    max-width: 60%;
+  }
+
+  form {
+    margin: 5% auto;
+    width: 80%;
+    margin-left: 0;
+  }
+
+  form input {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .button1 {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .switch-container {
+    margin-left: 60%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .formulario img {
+    width: 40%;
+  }
+
+  .left img {
+    max-width: 80%;
+  }
+
+  .switch-container {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .formulario {
+    padding: 10px;
+  }
+
+  form {
+    width: 90%;
+  }
+
+  .button1 {
+    font-size: 16px;
+    height: 40px;
+  }
+
+  .switch-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+}
