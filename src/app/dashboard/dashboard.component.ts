@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  errorMessage: string = '';
       openNav(): void {
     document.getElementById("mySidenav")!.style.width = "250px";
     document.getElementById("main")!.style.marginLeft = "250px";
@@ -174,8 +175,10 @@ export class DashboardComponent implements OnInit {
   }
 
   searchVehicleData(): void {
+    this.errorMessage ="";
+
     if (!this.searchVin) {
-      alert('Por favor, insira um código VIN válido');
+      this.errorMessage = 'Vin invalido';
       return;
     }
 
@@ -186,6 +189,7 @@ export class DashboardComponent implements OnInit {
       const foundData = this.vehicleDataList.find(vd => vd.vin === formattedVin);
       if (foundData) {
         this.vehicleData = foundData;
+        this.errorMessage  ="";
    
         const vehicle = this.vehicles.find(v => 
           this.getVinPrefix(v.model) === formattedVin.substring(0, 3));
@@ -193,7 +197,7 @@ export class DashboardComponent implements OnInit {
           this.selectVehicle(vehicle);
         }
       } else {
-        alert('VIN não encontrado');
+        this.errorMessage = 'Vin não encontrado';
         this.vehicleData = null;
       }
     }, 500);

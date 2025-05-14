@@ -64,7 +64,9 @@
     <input type="text" [(ngModel)]="searchVin" placeholder="Digite o código VIN ">
     <button class="btn btn-success" (click)="searchVehicleData()">Buscar Dados</button>
   </div>
-
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
   <!-- Tabela de Resultados -->
   <div class="vehicle-data" *ngIf="vehicleData">
     <h3>Dados do Veículo</h3>
