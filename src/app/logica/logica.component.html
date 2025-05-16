@@ -1,1 +1,70 @@
-<p>logica works!</p>
+<body>
+    <header>Desafio</header>
+    <div class="container">
+        <button id="button"><h1 id="start">Start</h1></button>
+        <br>
+    </div>
+    <div class = "resultsCss" >
+        <p id ="results"></p>
+        <p id ="results2"></p>
+        <p id ="results3"></p>
+        <p id ="results4"></p>
+    </div>
+    <br> 
+<script>
+        //função do button//
+        document.getElementById("button").addEventListener('click', function() {
+            DistanciaPecorrida = parseFloat(prompt("Qual a distância percorrida de sua casa até seu trabalho (em km).").replace(',', '.'));
+
+          while (!isNumero(DistanciaPecorrida)|| DistanciaPecorrida <=0) {
+            DistanciaPecorrida = parseFloat(prompt("Por favor, insira uma distância válida (em km).").replace(",",".")); //condição de repetição para caso o usuario escrevar outra coisa alem de numero
+        }
+
+           let ConsumoMedio = parseFloat(prompt("Qual consumo médio do veículo (em Km/L).").replace(',', '.'));
+        
+           while (!isNumero(ConsumoMedio)|| ConsumoMedio<=0) {
+            ConsumoMedio = parseFloat(prompt("Por favor, insira um valor válido para o consumo").replace(',', '.'));//condição de repetição para caso o usuario escrevar outra coisa alem de numero
+        }
+
+        let Postos = parseInt(prompt("Quantos postos você pesquisou ?"));
+
+           while (!isNumero(Postos) || Postos<=0) {
+             Postos = parseInt(prompt("Por favor, insira um valor válido para a quantidade de Posto"))//condição de repetição para caso o usuario escrevar outra coisa alem de numero
+        }
+        
+        let consumoNecessarioLitros = DistanciaPecorrida / ConsumoMedio; 
+        let somatotal = 0;
+        let Valormenor = 0;
+
+        for ( var i=0;Postos>i;i++){ //repetição
+          let valor= parseFloat(prompt("Valor do "+(i+1)+"° posto").replace(',', '.'));
+          while (!isNumero(valor) || valor<=0) {
+             valor = parseFloat(prompt("Por favor, insira um valor válido para o valor do Posto"))
+        }
+            somatotal += valor;
+            
+             if(Valormenor==0){
+               Valormenor=valor;
+        }else{
+               if(Valormenor>valor){
+                    Valormenor=valor;
+               }
+        }
+            }  
+        let media = somatotal/Postos;
+        let gastodiario = 2 * (parseFloat(consumoNecessarioLitros) * parseFloat(Valormenor));
+         document.getElementById('results').innerText = "o consumo necessario é: " + consumoNecessarioLitros.toFixed(2) + " litros ";
+         document.getElementById('results2').innerText = "A media de preço de cada posto é: " + media.toFixed(2) ;
+         document.getElementById('results3').innerText = "menor valor do posto é: " + Valormenor.toFixed(2)  ;
+         document.getElementById('results4').innerText = "gasto diario será: " + gastodiario.toFixed(2) ;
+         document.getElementById('start').innerText = "Start again" ;
+         //finalizando a função
+    });
+    
+    function isNumero(valor) {
+    // Verifica se o valor é um número válido
+    return !isNaN(parseFloat(valor)) && isFinite(valor);
+}
+
+</script>
+</body>
