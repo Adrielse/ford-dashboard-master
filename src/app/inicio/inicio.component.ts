@@ -20,4 +20,7 @@ Openlogica(): void{
   this.router.navigate(['/logica']);
 
 }
+openAngular():void{
+  this.router.navigate(['/login']);
+}
 }
