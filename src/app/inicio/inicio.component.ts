@@ -29,6 +29,10 @@ window.open('https://desafio-4-html-e-css-adriel-vaz-lima.vercel.app/', '_blank'
 openJavacript():void{
 window.open('https://desafio-javascript-adriel-vaz-lima.onrender.com', '_blank');
 }
+openLGPD():void{
+window.open('https://desafio-lgpd-adriel-vaz-lima.vercel.app/', '_blank');
+}
+
 openAngular():void{
   this.router.navigate(['/login']);
 }
