@@ -1,10 +1,12 @@
 .all-screen {
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+ background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
                 url('https://s2-autoesporte.glbimg.com/4PffpAMHy_HxP4WkXf5Wva_0MNQ=/0x0:620x415/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/c/4/VbAoMCTE2xdXIzA99iIA/2020-01-20-glab-mustang-janeiro-2020-02-sjd657k.jpg') center/cover no-repeat fixed;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .title {
@@ -24,7 +26,6 @@
 }
 
 .card {
-    background-color: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
@@ -36,6 +37,40 @@
     min-height: 200px;
     overflow: hidden;
     box-sizing: border-box;
+    background-color: #f8f9fa; 
+}
+
+
+.card:nth-child(1) {
+    background-color: #fff7e6;
+    border-top: 5px solid #f0db4f; 
+}
+
+.card:nth-child(2) {
+    background-color: #000000; 
+    border-top: 5px solid #000000;
+    color: #ffffff;
+}
+
+.card:nth-child(3) {
+    background-color: #e6f0ff; 
+    border-top: 5px solid #264de4; /* Azul do CSS */
+}
+.card:nth-child(4) {
+    background: linear-gradient(to bottom right, #fff7e6, #e6f0ff); 
+    border-top: 5px solid transparent;
+    border-image: linear-gradient(to right, #e34c26, #264de4, #f0db4f);
+    border-image-slice: 1;
+}
+
+.card:nth-child(5) {
+    background-color: #ffffff; 
+    border-top: 5px solid #1328e9; 
+}
+
+.card:nth-child(6) {
+    background-color: #ffebee; 
+    border-top: 5px solid #dd0031; 
 }
 
 .card:hover {
@@ -50,8 +85,9 @@
 }
 
 .card p {
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 8px 0;
     line-height: 1.4;
 }
@@ -62,7 +98,6 @@
 }
 
 .btn {
-    background-color: #007bff;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -75,20 +110,41 @@
     transition: background-color 0.3s;
 }
 
+.card:nth-child(1) .btn {
+    background-color: #f0db4f; 
+    color: #323330; 
+}
+.card:nth-child(2) .btn {
+    background-color: #f8f8f8;
+    color: black;
+}
+.card:nth-child(3) .btn {
+    background: linear-gradient(to right, #e34c26); 
+    color: rgb(37, 36, 36);
+}
+.card:nth-child(4) .btn {
+    background: linear-gradient(rgb(238, 218, 218)); 
+    color: #323330;
+}
+.card:nth-child(5) .btn {
+    background-color: #0337a7;
+    color: white;
+}
+.card:nth-child(6) .btn {
+    background-color: #dd0031; 
+    color: white;
+}
 .btn:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
 
-
 @media (min-width: 1201px) {
-    /* Desktop grande - 6 cards por linha */
     .card-container {
         grid-template-columns: repeat(6, 1fr);
     }
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-    /* Notebook/PC pequeno - 6 cards menores */
     .card-container {
         grid-template-columns: repeat(6, 1fr);
     }
@@ -109,7 +165,6 @@
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-    /* Tablet grande - 4 cards por linha */
     .card-container {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -120,7 +175,6 @@
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-    /* Tablet pequeno - 2 cards por linha */
     .card-container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -135,7 +189,6 @@
 }
 
 @media (max-width: 480px) {
-    /* Celular - 1 card por linha */
     .card-container {
         grid-template-columns: 1fr;
         max-width: 400px;
@@ -159,4 +212,47 @@
     .title {
         font-size: 22px;
     }
+}
+.site-footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    margin-top: auto; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-text p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.footer-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-image {
+    margin-top: 15px;
+  }
+}.main-content {
+    flex: 1; 
+    padding-bottom: 20px; 
 }
