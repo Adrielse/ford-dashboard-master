@@ -17,7 +17,7 @@ export class InicioComponent {
 
 
 Openlogica(): void{
-  this.router.navigate(['/logica']);
+ window.open('https://adrielse.github.io/Ingles-tecnico-e-logica-de-programa--o/', '_blank');
 
 }
 openAngular():void{
