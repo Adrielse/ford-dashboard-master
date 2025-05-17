@@ -23,6 +23,9 @@ Openlogica(): void{
 openVersionamento():void{
 window.open('https://github.com/AdrielVaz/Desafio-Versionamento.git', '_blank');
 }
+openHtmlecss():void{
+window.open('https://desafio-4-html-e-css-adriel-vaz-lima.vercel.app/', '_blank');
+}
 openAngular():void{
   this.router.navigate(['/login']);
 }
