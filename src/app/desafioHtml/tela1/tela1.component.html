@@ -1,23 +1,35 @@
-
-<body>
-    <header> 
-        <img class="logTop" src="/img/logo-ford-256.png" alt="">
+<div class="app-container">
+  <header> 
     <div class="menu">
-        <a href="index.html">Home</a>
-        <a href="lancamento.html">Lançamento</a>
-        <a href="contato.html">Contato</a>
+      <img class="logTop" [src]="'images/logo-ford-256.png'" alt="Ford Logo">
+      <a routerLink="/">Home</a>
+      <a routerLink="/lancamento">Lançamento</a>
+      <a routerLink="/contato">Contato</a>
     </div>    
-    </header>
-    <main>
-     <img src="images/imagem_1.jpg" alt="nova ranger">
-      <div class="mensagem">esta é nova ranger 2022. verifique novidades <a href="/html/lancamento.html">aqui</a></div> 
-    </main>
-    <footer>
-        <div class="footer-container">Redes Sociais 
-            <a href="https://www.facebook.com/ford/?locale=pt_BR"><img src="/img/facebook-50.png"  alt=""></a>
-            <a href="https://www.youtube.com/@fordbrasil"><img src="/img/youtube-squared-50.png" alt=""></a>
-            <a href="https://www.instagram.com/fordbrasil/"><img src="/img/instagram-logo-50.png" alt=""></a>
-            <div class = "logo"><img src="/img/ford-96.png" alt=""></div>
-        </div>
-    </footer>
-</body>
+  </header>
+  
+  <main>
+    <img [src]="'images/imagem_1.jpg'" alt="Nova Ranger">
+    <div class="mensagem">
+      Esta é nova ranger 2022. verifique novidades <a routerLink="/lancamento">aqui</a>
+    </div> 
+  </main>
+  
+  <footer>
+    <div class="footer-container">
+      Redes Sociais 
+      <a href="https://www.facebook.com/ford/?locale=pt_BR" target="_blank">
+        <img [src]="'images/facebook-50.png'" alt="Facebook">
+      </a>
+      <a href="https://www.youtube.com/@fordbrasil" target="_blank">
+        <img [src]="'images/youtube-squared-50.png'" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/fordbrasil/" target="_blank">
+        <img [src]="'images/instagram-logo-50.png'" alt="Instagram">
+      </a>
+      <div class="logo">
+        <img [src]="'images/ford-96.png'" alt="Ford Logo">
+      </div>
+    </div>
+  </footer>
+</div>

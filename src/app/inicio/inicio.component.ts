@@ -20,6 +20,9 @@ Openlogica(): void{
  window.open('https://adrielse.github.io/Ingles-tecnico-e-logica-de-programa--o/', '_blank');
 
 }
+openVersionamento():void{
+window.open('https://github.com/AdrielVaz/Desafio-Versionamento.git', '_blank');
+}
 openAngular():void{
   this.router.navigate(['/login']);
 }
