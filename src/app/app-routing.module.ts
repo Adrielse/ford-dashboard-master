@@ -5,14 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
 import { InicioComponent } from './inicio/inicio.component';
-import { Tela1Component } from './desafioHtml/tela1/tela1.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'inicio', component: InicioComponent },
-  { path: 'tela1', component: Tela1Component },
+
   { path: '**', redirectTo: '/inicio' }
 ];
 
