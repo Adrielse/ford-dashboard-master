@@ -79,16 +79,16 @@
     background-color: #0056b3;
 }
 
-/* Media Queries */
+
 @media (min-width: 1201px) {
-    /* Desktop grande - 7 cards por linha */
+    /* Desktop grande - 6 cards por linha */
     .card-container {
         grid-template-columns: repeat(6, 1fr);
     }
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-    /* Notebook/PC pequeno - 7 cards menores */
+    /* Notebook/PC pequeno - 6 cards menores */
     .card-container {
         grid-template-columns: repeat(6, 1fr);
     }
