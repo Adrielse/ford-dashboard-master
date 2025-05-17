@@ -27,7 +27,7 @@ openHtmlecss():void{
 window.open('https://desafio-4-html-e-css-adriel-vaz-lima.vercel.app/', '_blank');
 }
 openJavacript():void{
-window.open('https://desafio-javascript-adriel-vaz-lima.vercel.app/', '_blank');
+window.open('https://desafio-javascript-adriel-vaz-lima.onrender.com', '_blank');
 }
 openAngular():void{
   this.router.navigate(['/login']);
