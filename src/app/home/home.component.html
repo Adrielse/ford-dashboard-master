@@ -1,21 +1,45 @@
-<div id="mySidenav" class="sidenav">
+<!-- home.component.html -->
+<div class="app-container">
+  <div id="mySidenav" class="sidenav" [class.open]="isNavOpen">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <img src="images/ford.png" class="imgf" alt="Ford Logo">
-    <a routerLink="/home" style="color: green;" class="active">home</a>
-    <a routerLink="/dashboard" style="color: green;">dashboard</a>
-     <a routerLink="/logout" style="color: red;">Logout</a>
+    <div class="nav-header">
+      <img src="/images/ford.png" class="nav-logo" alt="Ford Logo">
+    </div>
+    <div class="nav-links">
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/logout" class="logout-link">Logout</a>
+    </div>
   </div>
-  <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-  
-  <main id="main">
-    <div class="full-background d-flex justify-content-center">
 
-    
-    <div class="modal d-flex">
-      <div class="modal-header">Sistema de dados FORD</div>
-      <div class="modal-body d-flex">
-        <a>Seja bem vindo(a)!</a>
+  <div class="main-content" [class.menu-open]="isNavOpen">
+    <button class="menu-toggle" (click)="openNav()">
+      <span class="hamburger">&#9776;</span>
+    </button>
+
+    <div class="welcome-container">
+      <div class="welcome-card">
+        <div class="welcome-header">Sistema de dados FORD</div>
+        <div class="welcome-body">
+          <p>Seja bem vindo(a)!</p>
+        </div>
       </div>
     </div>
-       </div>
-  </main>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/ford-96.png" alt="Ford Logo">
+      </div>
+      <div class="footer-links">
+        <a >Politicas de privacidade</a>
+        <a >Termos de serviços</a>
+        <a>Contate nos</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2025 Ford Motor Company. todos os direitos reservados . Desenvolvedor Adriel Vaz Lima.
+      </div>
+    </div>
+  </footer>
+</div>

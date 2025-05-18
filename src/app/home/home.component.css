@@ -1,102 +1,213 @@
-
-main{
-display: flex;
-justify-content: center;
-}
- main img{
-margin-top: 200px;
- }
-
- /* Modal sobre a imagem */
-.modal {
-  position: relative;
-  z-index: 1;
-  width: 440px;
-  height: 450px;
-  background-color: rgba(255, 255, 255, 0.863);
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+/* home.component.scss */
+:host {
+  display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Cabeçalho */
-.modal-header {
-  font-size: 16px;
-  color: #333;
-  padding: 10px 15px;
-  border-bottom: 1px solid #ccc;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Corpo */
-.modal-body {
-  flex: 1;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.modal-body a {
-  text-decoration: none;
-  color: #1a73e8;
-  font-weight: bold;
-  font-size: 16px;
-}
-.modal-body a:hover {
-  text-decoration: underline;
-}.full-background {
-  top: 1;
-  background-image: url('/images/ranger.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  align-items: center;
-  z-index: 0;
-  width: 70%;
-}
-
-
+/* Side Navigation Styles */
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #faf9f9; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color:  #00274C;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+  &.open {
+    width: 250px;
   }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+
+  .nav-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .nav-logo {
+      max-width: 120px;
+      height: auto;
+    }
   }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+
+    a {
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #ecf0f1;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #34495e;
+        color: #fff;
+      }
+
+      &.active {
+        background-color: #3498db;
+        color: white;
+      }
+
+      &.logout-link {
+        color: #e74c3c;
+        margin-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+
+        &:hover {
+          background-color: rgba(231, 76, 60, 0.1);
+        }
+      }
+    }
   }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
+
+  .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    color: #ecf0f1;
+    text-decoration: none;
+
+    &:hover {
+      color: #3498db;
+    }
   }
-  
-  .active{
-    border-left: red;
-background-color: #f1f1f1;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  transition: margin-left 0.5s;
+  padding: 20px;
+  margin-left: 0;
+
+  &.menu-open {
+    margin-left: 250px;
   }
-.imgf{
-   width: 40%; 
-   margin: 0px 0px 20px 20px;
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #2c3e50;
+    margin-bottom: 20px;
+
+    &:hover {
+      color: #3498db;
+    }
+  }
+
+  .welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+  }
+
+  .welcome-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+
+    .welcome-header {
+      background: #00274C;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .welcome-body {
+      padding: 30px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+    }
+  }
+}
+
+
+.app-footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 30px 0;
+  margin-top: auto;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+
+    .footer-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      a {
+        color: #bbbbbb;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+      color: #888888;
+      text-align: center;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content.menu-open {
+    margin-left: 0;
+  }
+
+  .sidenav.open {
+    width: 100%;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px !important;
+  }
 }

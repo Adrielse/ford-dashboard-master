@@ -1,96 +1,126 @@
-<div id="mySidenav" class="sidenav">
+<div class="app-container">
+  <!-- Ford Themed Sidebar -->
+  <div id="mySidenav" class="sidenav" [class.open]="isNavOpen">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <img src="images/ford.png" class="imgf" alt="Ford Logo">
-    <a  (click)="home()" style="color: green;" >home</a>
-    <a routerLink="/dashboard" class="active"style="color: green; ">dashboard</a>
-     <a  (click)="logout()"  style="color: red;">Logout</a>
-  </div>
-  <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-  
-
-
-
-<div class="dashboard-container">
- <div style="display: flex; justify-content: center;"><h1 style="color: rgb(58, 58, 170);">Dashboard FORD</h1></div>
-
-
-  <!-- Cartões de Métricas -->
-  <div class="metrics-cards">
-      <!-- Seletor de Veículo -->
-  <div class="vehicle-selector">
-    <label for="vehicleSelect">Selecione um veículo:</label>
-    <select id="vehicleSelect" class="vehicle-select" 
-            [(ngModel)]="selectedVehicle" 
-            (change)="selectVehicle(selectedVehicle)">
-      <option [ngValue]="null" disabled>Selecione um veículo</option>
-      <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle">
-        {{vehicle.model}} ({{vehicle.year}})
-      </option>
-    </select>
+    <div class="nav-header">
+      <img src="/images/ford.png" class="nav-logo" alt="Ford Logo">
+    </div>
+    <div class="nav-links">
+      <a (click)="home()" routerLinkActive="active">Home</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a (click)="logout()" class="logout-link">Logout</a>
+    </div>
   </div>
 
-    <div class="metric-card">
-      <div class="metric-header">
-        <h3>Total de Vendas</h3>
+  <div class="main-content" [class.menu-open]="isNavOpen">
+    <button class="menu-toggle" (click)="openNav()">
+      <span class="hamburger">&#9776;</span>
+    </button>
+
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Dashboard FORD</h1>
       </div>
-      <div class="metric-value">{{currentTotalSales.toLocaleString('pt-BR')}}</div>
-      <div class="metric-unit">{{selectedVehicle ? 'unit' : 'totais'}}</div>
-    </div>
 
-  <div class="metric-card">
-    <div class="metric-header">
-      <h3>Conectados</h3>
+      <!-- Cartões de Métricas -->
+      <div class="metrics-cards">
+        <!-- Seletor de Veículo -->
+        <div class="vehicle-selector">
+          <label for="vehicleSelect">Selecione um veículo:</label>
+          <select id="vehicleSelect" class="vehicle-select" 
+                  [(ngModel)]="selectedVehicle" 
+                  (change)="selectVehicle(selectedVehicle)">
+            <option [ngValue]="null" disabled>Selecione um veículo</option>
+            <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle">
+              {{vehicle.model}} ({{vehicle.year}})
+            </option>
+          </select>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>Total de Vendas</h3>
+          </div>
+          <div class="metric-value">{{currentTotalSales.toLocaleString('pt-BR')}}</div>
+          <div class="metric-unit">{{selectedVehicle ? 'unit' : 'totais'}}</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>Conectados</h3>
+          </div>
+          <div class="metric-value">{{connectedVehicles}}</div>
+          <div class="metric-unit">unit</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>Software Atualizado</h3>
+          </div>
+          <div class="metric-value">{{updatedVehicles}}</div>
+          <div class="metric-unit">unit</div>
+        </div>
+      </div>
+
+      <!-- Imagem do Veículo Selecionado -->
+      <div class="vehicle-image" *ngIf="selectedVehicle">
+        <img [src]="selectedVehicle.imageUrl" [alt]="selectedVehicle.model" class="vehicle-img">
+        <h2>{{selectedVehicle.model}} ({{selectedVehicle.year}})</h2>
+      </div>
+
+      <!-- Busca por VIN -->
+      <div class="vin-search">
+        <input type="text" [(ngModel)]="searchVin" placeholder="Digite o código VIN">
+        <button class="search-btn" (click)="searchVehicleData()">Buscar Dados</button>
+      </div>
+      
+      <div *ngIf="errorMessage" class="alert-message">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Tabela de Resultados -->
+      <div class="vehicle-data" *ngIf="vehicleData">
+        <h3>Dados do Veículo</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Código VIN</th>
+              <th>Odômetro</th>
+              <th>Nível Combustível</th>
+              <th>Status</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{vehicleData.vin}}</td>
+              <td>{{vehicleData.odometer}} km</td>
+              <td>{{vehicleData.fuelLevel}}%</td>
+              <td>{{vehicleData.status}}</td>
+              <td>{{vehicleData.lat}}</td>
+              <td>{{vehicleData.long}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="metric-value">{{connectedVehicles}}</div>
-    <div class="metric-unit">unit</div>
   </div>
 
-  <div class="metric-card">
-    <div class="metric-header">
-      <h3>Software Atualizado</h3>
+  <!-- Ford Themed Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="/images/ford-96.png" alt="Ford Logo">
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2025 Ford Motor Company. All rights reserved.
+      </div>
     </div>
-    <div class="metric-value">{{updatedVehicles}}</div>
-    <div class="metric-unit">unit</div>
-  </div>
-</div>
-  <!-- Imagem do Veículo Selecionado -->
-  <div class="vehicle-image" *ngIf="selectedVehicle">
-    <img [src]="selectedVehicle.imageUrl" [alt]="selectedVehicle.model" class="vehicle-img">
-    <h2>{{selectedVehicle.model}} ({{selectedVehicle.year}})</h2>
-  </div>
-
-  <!-- Busca por VIN -->
-  <div class="vin-search">
-    <input type="text" [(ngModel)]="searchVin" placeholder="Digite o código VIN ">
-    <button class="btn btn-success" (click)="searchVehicleData()">Buscar Dados</button>
-  </div>
-  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-    {{ errorMessage }}
-  </div>
-  <!-- Tabela de Resultados -->
-  <div class="vehicle-data" *ngIf="vehicleData">
-    <h3>Dados do Veículo</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Código VIN</th>
-          <th>Odômetro</th>
-          <th>Nível Combustível</th>
-          <th>Status</th>
-          <th>lat</th>
-          <th>long</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{vehicleData.vin}}</td>
-          <td>{{vehicleData.odometer}} km</td>
-          <td>{{vehicleData.fuelLevel}}%</td>
-          <td>{{vehicleData.status}}</td>
-          <td>{{vehicleData.lat}}</td>
-          <td>{{vehicleData.long}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  </footer>
 </div>

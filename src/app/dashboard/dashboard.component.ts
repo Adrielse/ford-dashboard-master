@@ -14,16 +14,17 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  errorMessage: string = '';
-      openNav(): void {
-    document.getElementById("mySidenav")!.style.width = "250px";
-    document.getElementById("main")!.style.marginLeft = "250px";
+   isNavOpen = false;
+
+  openNav() {
+    this.isNavOpen = true;
   }
 
-  closeNav(): void {
-    document.getElementById("mySidenav")!.style.width = "0";
-    document.getElementById("main")!.style.marginLeft = "0";
+  closeNav() {
+    this.isNavOpen = false;
   }
+  errorMessage: string = '';
+ 
   searchControl = new FormControl();
   vehicles: Vehicle[] = [
     {
@@ -214,6 +215,7 @@ export class DashboardComponent implements OnInit {
  home(): void {
     this.router.navigate(['/home']);
   }
+  
 }
 
 

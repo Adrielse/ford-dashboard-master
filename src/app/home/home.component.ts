@@ -12,13 +12,13 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent {
  
  
-  openNav(): void {
-    document.getElementById("mySidenav")!.style.width = "250px";
-    document.getElementById("main")!.style.marginLeft = "250px";
+ isNavOpen = false;
+
+  openNav() {
+    this.isNavOpen = true;
   }
 
-  closeNav(): void {
-    document.getElementById("mySidenav")!.style.width = "0";
-    document.getElementById("main")!.style.marginLeft = "0";
+  closeNav() {
+    this.isNavOpen = false;
   }
 }
