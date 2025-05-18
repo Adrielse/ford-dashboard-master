@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
       year: 2023,
       price: 300000,
       connected: 202,
-      softwareUpdated: 112,
+      softwareUpdated: 150,
       imageUrl: '/images/broncoSport.png',
       totalSales: 255 
     }

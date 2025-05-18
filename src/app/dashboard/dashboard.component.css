@@ -92,14 +92,16 @@
     }
   }
 }
-
+  .active {
+      color: #0056b3;
+      background-color: rgba(0, 39, 76, 0.1);
+    }
 /* Main Content Styles */
 .main-content {
   flex: 1;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.5s;
   padding: 20px;
   margin-left: 0;
-  background-color: #ffffff;
 
   &.menu-open {
     margin-left: 250px;
@@ -108,24 +110,53 @@
   .menu-toggle {
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: 38px;
     cursor: pointer;
-    color: #00274C;
+    color: #2c3e50;
     margin-bottom: 20px;
-    transition: color 0.2s;
-    padding: 5px 10px;
-    border-radius: 4px;
 
     &:hover {
-      color: #0056b3;
-      background-color: rgba(0, 39, 76, 0.1);
+      color: #3498db;
+    }
+  }
+
+  .welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+  }
+
+  .welcome-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+
+    .welcome-header {
+      background: #00274C;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .welcome-body {
+      padding: 30px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
     }
   }
 }
 
+
 /* Dashboard Container */
 .dashboard-container {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 20px;
 
@@ -222,8 +253,7 @@
   padding: 20px;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+  
   .vehicle-img {
     max-width: 100%;
     height: auto;

@@ -6,8 +6,8 @@
       <img src="/images/ford.png" class="nav-logo" alt="Ford Logo">
     </div>
     <div class="nav-links">
-      <a (click)="home()" routerLinkActive="active">Home</a>
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a (click)="home()"  routerLinkActive="active">Home</a>
+      <a routerLink="/dashboard" class="active" routerLinkActive="active">Dashboard</a>
       <a (click)="logout()" class="logout-link">Logout</a>
     </div>
   </div>
@@ -25,8 +25,9 @@
       <!-- Cartões de Métricas -->
       <div class="metrics-cards">
         <!-- Seletor de Veículo -->
-        <div class="vehicle-selector">
-          <label for="vehicleSelect">Selecione um veículo:</label>
+        <div class="metric-card">
+          <label style="font-size: 20px;" for="vehicleSelect">Selecione um veículo: </label>
+          <br>
           <select id="vehicleSelect" class="vehicle-select" 
                   [(ngModel)]="selectedVehicle" 
                   (change)="selectVehicle(selectedVehicle)">
@@ -114,12 +115,12 @@
         <img src="/images/ford-96.png" alt="Ford Logo">
       </div>
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
+         <a >Politicas de privacidade</a>
+        <a >Termos de serviços</a>
+        <a>Contate nos</a>
       </div>
-      <div class="footer-copyright">
-        &copy; 2025 Ford Motor Company. All rights reserved.
+     <div class="footer-copyright">
+        &copy; 2025 Ford Motor Company. todos os direitos reservados . Desenvolvedor Adriel Vaz Lima.
       </div>
     </div>
   </footer>

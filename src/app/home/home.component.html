@@ -6,9 +6,9 @@
       <img src="/images/ford.png" class="nav-logo" alt="Ford Logo">
     </div>
     <div class="nav-links">
-      <a routerLink="/home" routerLinkActive="active">Home</a>
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/logout" class="logout-link">Logout</a>
+      <a routerLink="/home" class="active" routerLinkActive="active">Home</a>
+      <a routerLink="/dashboard"  routerLinkActive="active">Dashboard</a>
+      <a (click)=" logout()" class="logout-link">Logout</a>
     </div>
   </div>
 
@@ -21,7 +21,10 @@
       <div class="welcome-card">
         <div class="welcome-header">Sistema de dados FORD</div>
         <div class="welcome-body">
-          <p>Seja bem vindo(a)!</p>
+          <p style="color: blue; font-size: 30px;" >Seja bem vindo(a)!</p>
+          <p>Dashboard da Ford</p>
+          <P>Monitoramento de Veículos em Tempo Real</P>
+          <p>Acesse dados completos da sua frota Ford</p>
         </div>
       </div>
     </div>
