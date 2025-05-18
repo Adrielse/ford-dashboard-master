@@ -104,7 +104,15 @@
   position: relative;
   margin-bottom: 1.5rem;
 }
+.ford-input-icon {
+  cursor: pointer;
+  user-select: none; 
+}
 
+
+.ford-input-icon:hover {
+  opacity: 0.8;
+}
 .ford-input {
   width: 100%;
   padding: 12px 16px 12px 40px;

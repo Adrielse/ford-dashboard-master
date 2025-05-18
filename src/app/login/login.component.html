@@ -19,11 +19,13 @@
           <span class="ford-input-icon">✉</span>
         </div>
         
-        <div class="ford-input-group">
-          <input type="password" class="ford-input" id="password" 
-                 placeholder="Senha" [(ngModel)]="password" name="password" required>
-          <span class="ford-input-icon">🔒</span>
-        </div>
+       <div class="ford-input-group">
+  <input [type]="showPassword ? 'text' : 'password'" class="ford-input" id="password" 
+         placeholder="Senha" [(ngModel)]="password" name="password" required>
+  <span class="ford-input-icon" (click)="toggleShowPassword()">
+    {{ showPassword ? '👁️' : '🔒' }}
+  </span>
+</div>
         
         <div class="ford-options-row">
           <label class="ford-checkbox-container">

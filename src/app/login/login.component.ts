@@ -29,4 +29,10 @@ export class LoginComponent {
       this.errorMessage = 'Usuário ou senha incorretos';
     }
   }
+
+  showPassword: boolean = false;
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 }
