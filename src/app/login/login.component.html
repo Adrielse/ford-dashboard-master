@@ -1,27 +1,44 @@
-
-<main>
-    <div class="left">
-      <img src="/images/ranger.png" alt="Ford Ranger">
-    </div>
-    <div class="formulario">
-      <img src="/images/ford.png" alt="Ford Logo">
-      <form (ngSubmit)="onSubmit()">
-        <h1 style="color: green;">Boas-vindas</h1>
-        <input type="text" class="input-icone" placeholder="insira seu e-mail" 
-               [(ngModel)]="username" name="username" required>
-        <input type="password" class="input-icone1" id="password" 
-               placeholder="insira sua senha" [(ngModel)]="password" name="password" required>
-        <div class="switch-container">
-          <span class="aviso">login automatico</span>
-          <label class="switch">
-            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
-            <span class="slider"></span>
-          </label>
+<main class="ford-login-container">
+    <div class="ford-left-section">
+  <div class="ford-vehicle-container">
+    
+    <div class="ford-vehicle-overlay"></div>
+  </div>
+</div>
+    <div class="ford-form-section">
+      <div class="ford-logo-container">
+        <img src="/images/ford-96.png" alt="Ford Logo" class="ford-logo">
+      </div>
+      <form (ngSubmit)="onSubmit()" class="ford-login-form">
+        <h1 class="ford-welcome-title">BEM-VINDO À SUA CONTA FORD</h1>
+        <p class="ford-login-subtitle">Faça login com seu usuario e senha</p>
+        
+        <div class="ford-input-group">
+          <input type="text" class="ford-input" placeholder="E-mail" 
+                 [(ngModel)]="username" name="username" required>
+          <span class="ford-input-icon">✉</span>
         </div>
-        <button type="submit" class="button1" style="color: aliceblue;">Entrar</button>
-        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        
+        <div class="ford-input-group">
+          <input type="password" class="ford-input" id="password" 
+                 placeholder="Senha" [(ngModel)]="password" name="password" required>
+          <span class="ford-input-icon">🔒</span>
+        </div>
+        
+        <div class="ford-options-row">
+          <label class="ford-checkbox-container">
+            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
+            <span class="ford-checkmark"></span>
+            <span class="ford-remember-text">Manter conectado</span>
+          </label>
+          <a  class="ford-forgot-password">Esqueceu a senha?</a>
+        </div>
+        
+        <button type="submit" class="ford-login-button">ENTRAR</button>
+        
+        <div *ngIf="errorMessage" class="ford-error-message">
           {{ errorMessage }}
         </div>
       </form>
     </div> 
-  </main>
+</main>

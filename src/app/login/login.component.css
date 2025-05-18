@@ -1,228 +1,226 @@
-
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
-
-main{
-display: flex;
-height: 90vh;
+.ford-login-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Ford Antenna', Arial, sans-serif;
 }
+.ford-left-section {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  
 
-.left img{
-
-margin-top: 20%;
-max-width: 80%;
-height: auto;
-}
-.formulario img{
-    margin-left: 40%;
-    width: 20%;
-    height: auto;
-}
-
-.formulario{  
-  width: 50%;
-height: 100vh;
-background-color: rgb(255, 249, 249);
-justify-content: center;
-}
-
-
-form{
-     margin-top: 20%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-form input{
-  box-shadow: rgb(15, 15, 15);
-    margin-left: 10%;
-    margin-top: 15px;
-    width: 76%;
-    height: 30px;
-
-}
-.input-icone{
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23888' viewBox='0 0 448 512'%3E%3Cpath d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm89.6 32h-11.2c-22.4 10.3-47.3 16-73.6 16s-51.2-5.7-73.6-16h-11.2C65.6 288 0 353.6 0 435.2V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-28.8c0-81.6-65.6-147.2-144.4-147.2z'/%3E%3C/svg%3E");
+  background-image: url('https://www.agoramotors.com.br/wp-content/uploads/2025/03/ford-estuda-mustang-4-portas-2-1024x576.jpg');
+  background-size: cover;
+  background-position: center right; 
   background-repeat: no-repeat;
-  padding-left: 35px; /* espaço para o ícone */
-  background-size:25px;
+  background-attachment: local;
   
-}
-.input-icone1{
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23888' viewBox='0 0 448 512'%3E%3Cpath d='M400 192h-24V128C376 57.3 318.7 0 248 0S120 57.3 120 128v64H96c-26.5 0-48 21.5-48 48v224c0 26.5 21.5 48 48 48h304c26.5 0 48-21.5 48-48V240c0-26.5-21.5-48-48-48zm-88 0H136V128c0-48.6 39.4-88 88-88s88 39.4 88 88v64z'/%3E%3C/svg%3E");
-  padding-left: 35px; /* espaço para o ícone */
-  background-size:25px;
-  background-repeat: no-repeat;
-  
-}
-.button1{
-  margin-top: 20px;
-  width: 76%;  
-  margin-left: 10%;
-  background-color: rgb(139, 138, 138); 
-  color: black; 
-  border-radius: 5px;
-  height: 36px;
+  position: relative;
 }
 
-  
-.button1:hover {
-    background-color: #04AA6D;
-    color: white;
-  }
-
-  .switch-container {
-    margin-top: 10px;
-    margin-left: 70%;
-    display: flex;
-    align-items: center;
-    gap: 10px; 
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-  }
-  
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0;
-    right: 0; bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 24px;
-  }
-  
-  .slider::before {
-    position: absolute;
-    content: "";
-    height: 18px; width: 18px;
-    left: 3px; bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #4caf50;
-  }
-  
-  input:checked + .slider::before {
-    transform: translateX(26px);
-  }
-  
- 
-  .aviso {
-    font-size: 14px;
-    color: #333;
-  }
-  .password-toggle-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
-  .password-toggle-icon i {
-    font-size: 18px;
-    line-height: 1;
-    color: #333;
-    transition: color 0.3s ease-in-out;
-    margin-bottom: 20px;
-  }
-  
-  .password-toggle-icon i:hover {
-    color: #000;
-  }
-
-@media (max-width: 1024px) {
-  main {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .formulario {
-    width: 100%;
-    height: auto;
-    padding: 20px 0;
-  }
-
-  .formulario img {
-    margin: 0 auto 20px auto;
-    display: block;
-    width: 30%;
-  }
-
-  .left img {
-    margin: 20px auto;
-    display: block;
-    max-width: 60%;
-  }
-
-  form {
-    margin: 5% auto;
-    width: 80%;
-    margin-left: 0;
-  }
-
-  form input {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .button1 {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .switch-container {
-    margin-left: 60%;
-  }
+.ford-left-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0,45,114,0.7) 0%, rgba(0,45,114,0.3) 100%);
+  z-index: 0;
 }
 
 
-@media (max-width: 768px) {
-  .formulario img {
-    width: 40%;
-  }
+.ford-left-section > * {
+  position: relative;
+  z-index: 1;
+  color: white; 
+  max-width: 500px;
+  width: 100%;
+}
 
-  .left img {
-    max-width: 80%;
-  }
+/* Efeito de borda decorativa entre as seções */
+.ford-left-section {
+  border-right: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
 
-  .switch-container {
-    margin-left: 0;
-    justify-content: center;
-  }
+.ford-car-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
-  .formulario {
-    padding: 10px;
-  }
+.ford-form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  background-image: 
+    linear-gradient(to right, 
+      #ffffff 0%, 
+      #ffffff 95%, 
+      #002d72 95%, 
+      #002d72 96%, 
+      #e6f0fa 96%, 
+      #e6f0fa 100%);
+      
+  box-shadow: inset 0 0 40px rgba(0,45,114,0.03);
+}
 
-  form {
-    width: 90%;
-  }
+.ford-logo-container {
+  margin-bottom: 2rem;
+}
 
-  .button1 {
-    font-size: 16px;
-    height: 40px;
-  }
+.ford-logo {
+  height: 50px; /* Tamanho um pouco maior para o logo Ford */
+}
 
-  .switch-container {
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-  }
+.ford-login-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.ford-welcome-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #003478; /* Azul Ford */
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.ford-login-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.ford-input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.ford-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.ford-input:focus {
+  border-color: #003478; /* Azul Ford */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 52, 120, 0.2); /* Azul Ford com transparência */
+}
+
+.ford-input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.ford-options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.ford-checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ford-checkmark {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-right: 8px;
+  position: relative;
+}
+
+.ford-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ford-checkbox-container input:checked ~ .ford-checkmark {
+  background-color: #003478; /* Azul Ford */
+  border-color: #003478; /* Azul Ford */
+}
+
+.ford-checkbox-container input:checked ~ .ford-checkmark:after {
+  content: "✓";
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+
+.ford-remember-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.ford-forgot-password {
+  font-size: 14px;
+  color: #003478; /* Azul Ford */
+  text-decoration: none;
+}
+
+.ford-login-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #003478; /* Azul Ford */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+}
+
+.ford-login-button:hover {
+  background-color: #00285e; /* Azul Ford mais escuro */
+}
+
+.ford-register-section {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.ford-register-link {
+  color: #003478; /* Azul Ford */
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+  text-transform: uppercase;
+}
+
+.ford-error-message {
+  margin-top: 1rem;
+  padding: 10px;
+  background-color: #ffebee;
+  color: #d32f2f;
+  border-radius: 4px;
+  font-size: 14px;
 }
