@@ -14,51 +14,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-   isNavOpen = false;
-
-  openNav() {
-    this.isNavOpen = true;
-  }
-
-  closeNav() {
-    this.isNavOpen = false;
-  }
+  isNavOpen = false;
   errorMessage: string = '';
- 
   searchControl = new FormControl();
-  vehicles: Vehicle[] = [
-    {
-      id: 1,
-      model: 'Territory',
-      year: 2023,
-      price: 250000,
-      connected: 133,
-      softwareUpdated: 112,
-      imageUrl: '/images/territory.png',
-      totalSales: 856 
-    },
-    {
-      id: 2,
-      model: 'Mustang',
-      year: 2023,
-      price: 350000,
-      connected: 421,
-      softwareUpdated: 120,
-      imageUrl: '/images/mustang.png',
-      totalSales: 432 
-    },
-    {
-      id: 3,
-      model: 'Bronco',
-      year: 2023,
-      price: 300000,
-      connected: 202,
-      softwareUpdated: 150,
-      imageUrl: '/images/broncoSport.png',
-      totalSales: 255 
-    }
-  ];
+  loading = false;
   
+  // Remova os arrays mockados e inicialize como vazios
+  vehicles: Vehicle[] = [];
   selectedVehicle: Vehicle | null = null;
   vehicleData: VehicleData | null = null;
   searchVin = '';
@@ -68,40 +30,6 @@ export class DashboardComponent implements OnInit {
   connectedVehicles = 0;
   updatedVehicles = 0;
 
-  
-  vehicleDataList: VehicleData[] = [
-    {
-      vin: '2FRHDUYS2Y63NHD22454',
-      odometer: 12500,
-      tirePressure: '32 psi',
-      status: 'on',
-      batteryStatus: 'Carregado',
-      fuelLevel: 78,
-      lat: -23.5505,
-      long: -46.6333
-    },
-    {
-      vin: '1FM5K8D84HGA12345',
-      odometer: 8700,
-      tirePressure: '34 psi',
-      status: 'off',
-      batteryStatus: 'Carregando',
-      fuelLevel: 45,
-      lat: -22.9068,
-      long: -43.1729
-    },
-    {
-      vin: '3GNAXHEV5JL123456',
-      odometer: 15300,
-      tirePressure: '31 psi',
-      status: 'on',
-      batteryStatus: 'Descarga',
-      fuelLevel: 22,
-      lat: -34.6037,
-      long: -58.3816
-    }
-  ];
-
   constructor(
     private vehicleService: VehicleService,
     public router: Router
@@ -109,7 +37,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadInitialData();
-    this.calculateGeneralMetrics();
 
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
@@ -122,49 +49,117 @@ export class DashboardComponent implements OnInit {
       },
       error: (err) => {
         console.error('Erro ao buscar veículos:', err);
-        this.calculateGeneralMetrics();
+        this.errorMessage = 'Erro ao buscar veículos. Tente novamente.';
       }
     });
   }
+// Método para carregar dados iniciais
+loadInitialData(): void {
+  this.vehicleService.getVehicles().subscribe({
+    next: (vehicles) => {
+      console.log('Dados recebidos:', vehicles);
+      this.vehicles = vehicles;
+      this.calculateGeneralMetrics();
+      console.log('Métricas calculadas:', {
+        sales: this.currentTotalSales,
+        updated: this.updatedVehicles
+      });
+    }
+  });
+}
+// Método para carregar detalhes do veículo
+private loadVehicleDetails(vehicleId: number): void {
+  this.vehicleService.getVehicleDataByVehicleId(vehicleId).subscribe({
+    next: (data) => {
+      this.vehicleData = data;
+    },
+    error: (err) => {
+      console.error('Erro ao carregar detalhes:', err);
+      this.vehicleData = null;
+    }
+  });
+}
 
-  loadInitialData(): void {
-    this.vehicleService.getVehicles().subscribe({
-      next: (vehicles) => {
-        this.vehicles = vehicles.length > 0 ? vehicles : this.vehicles;
-        this.calculateGeneralMetrics();
+
+calculateGeneralMetrics(): void {
+  this.currentTotalSales = this.vehicles.reduce(
+    (sum, v) => sum + (v.total_sales || 0), 
+    0
+  );
+  
+  this.connectedVehicles = this.vehicles.reduce(
+    (sum, v) => sum + (v.connected || 0), 
+    0
+  );
+  
+  this.updatedVehicles = this.vehicles.reduce(
+    (sum, v) => sum + (v.software_updated || 0), 
+    0
+  );
+}
+selectVehicle(vehicle: Vehicle | null): void {
+  this.selectedVehicle = vehicle;
+  
+  if (vehicle) {
+    this.currentTotalSales = vehicle.total_sales;
+    this.connectedVehicles = vehicle.connected;
+    this.updatedVehicles = vehicle.software_updated;
+    
+    if (vehicle.id) {
+      this.loadVehicleData(vehicle.id);
+    }
+  } else {
+    this.calculateGeneralMetrics();
+  }
+}
+  private loadVehicleData(vehicleId: number): void {
+    this.loading = true;
+    this.vehicleService.getVehicleDataByVehicleId(vehicleId).subscribe({
+      next: (data) => {
+        this.vehicleData = data;
+        this.loading = false;
       },
       error: (err) => {
-        console.error('Erro ao carregar veículos:', err);
-        this.calculateGeneralMetrics();
+        console.error('Erro ao carregar dados do veículo:', err);
+        this.errorMessage = 'Erro ao carregar dados do veículo.';
+        this.loading = false;
       }
     });
   }
 
-  calculateGeneralMetrics(): void {
-
-    this.currentTotalSales = this.vehicles.reduce((sum, v) => sum + (v.totalSales || 0), 0);
-    this.connectedVehicles = this.vehicles.reduce((sum, v) => sum + (v.connected || 0), 0);
-    this.updatedVehicles = this.vehicles.reduce((sum, v) => sum + (v.softwareUpdated || 0), 0);
+searchVehicleData(): void {
+  this.errorMessage = '';
+  
+  if (!this.searchVin) {
+    this.errorMessage = 'VIN inválido';
+    return;
   }
 
-  selectVehicle(vehicle: Vehicle | null): void {
-    this.selectedVehicle = vehicle;
-    
-    if (vehicle) {
-      // Mostra os dados específicos do veículo selecionado
-      this.currentTotalSales = vehicle.totalSales;
-      this.connectedVehicles = vehicle.connected;
-      this.updatedVehicles = vehicle.softwareUpdated;
-      
-      // Encontra os dados do veículo correspondente
-      this.vehicleData = this.vehicleDataList.find(vd => 
-        vd.vin.startsWith(this.getVinPrefix(vehicle.model))) || null;
-    } else {
-     
-      this.calculateGeneralMetrics();
+  const formattedVin = this.formatVin(this.searchVin);
+  
+  this.vehicleService.getVehicleData(formattedVin).subscribe({
+    next: (data) => {
+      if (data) {
+        this.vehicleData = data;
+        console.log('Dados recebidos:', data); // Adicione para debug
+        
+        // Atualiza métricas se encontrar veículo correspondente
+        const vehicle = this.vehicles.find(v => 
+          this.getVinPrefix(v.model) === formattedVin.substring(0, 3));
+        if (vehicle) {
+          this.selectVehicle(vehicle);
+        }
+      } else {
+        this.errorMessage = 'VIN não encontrado';
+        this.vehicleData = null;
+      }
+    },
+    error: (err) => {
+      console.error('Erro ao buscar VIN:', err);
+      this.errorMessage = 'Erro na busca por VIN';
     }
-  }
-
+  });
+}
   // Helper para gerar prefixo de VIN baseado no modelo
   private getVinPrefix(model: string): string {
     switch(model.toLowerCase()) {
@@ -175,47 +170,18 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  searchVehicleData(): void {
-    this.errorMessage ="";
-
-    if (!this.searchVin) {
-      this.errorMessage = 'Vin invalido';
-      return;
-    }
-
-    const formattedVin = this.formatVin(this.searchVin);
-    
-
-    setTimeout(() => {
-      const foundData = this.vehicleDataList.find(vd => vd.vin === formattedVin);
-      if (foundData) {
-        this.vehicleData = foundData;
-        this.errorMessage  ="";
-   
-        const vehicle = this.vehicles.find(v => 
-          this.getVinPrefix(v.model) === formattedVin.substring(0, 3));
-        if (vehicle) {
-          this.selectVehicle(vehicle);
-        }
-      } else {
-        this.errorMessage = 'Vin não encontrado';
-        this.vehicleData = null;
-      }
-    }, 500);
-  }
-
   private formatVin(vin: string): string {
     return vin.trim().toUpperCase();
   }
 
+  // Métodos de navegação mantidos
+  openNav() { this.isNavOpen = true; }
+  closeNav() { this.isNavOpen = false; }
   logout(): void {
     localStorage.removeItem('isLoggedIn');
     this.router.navigate(['/login']);
   }
- home(): void {
+  home(): void {
     this.router.navigate(['/home']);
   }
-  
 }
-
-

@@ -37,35 +37,42 @@
             </option>
           </select>
         </div>
+<!-- Total de Vendas -->
+<div class="metric-card">
+  <div class="metric-header">
+    <h3>Total de Vendas</h3>
+  </div>
+  <div class="metric-value">
+    {{ (currentTotalSales !== undefined ? currentTotalSales : 0) | number }}
+  </div>
+  <div class="metric-unit">{{ selectedVehicle ? 'unit' : 'totais' }}</div>
+</div>
 
-        <div class="metric-card">
-          <div class="metric-header">
-            <h3>Total de Vendas</h3>
-          </div>
-          <div class="metric-value">{{currentTotalSales.toLocaleString('pt-BR')}}</div>
-          <div class="metric-unit">{{selectedVehicle ? 'unit' : 'totais'}}</div>
-        </div>
 
         <div class="metric-card">
           <div class="metric-header">
             <h3>Conectados</h3>
           </div>
-          <div class="metric-value">{{connectedVehicles}}</div>
+      <div class="metric-value">
+  {{connectedVehicles !== undefined ? connectedVehicles : '0'}}
+</div>
           <div class="metric-unit">unit</div>
         </div>
-
-        <div class="metric-card">
-          <div class="metric-header">
-            <h3>Software Atualizado</h3>
-          </div>
-          <div class="metric-value">{{updatedVehicles}}</div>
-          <div class="metric-unit">unit</div>
-        </div>
+<!-- Software Atualizado -->
+<div class="metric-card">
+  <div class="metric-header">
+    <h3>Software Atualizado</h3>
+  </div>
+  <div class="metric-value">
+    {{ updatedVehicles !== undefined ? updatedVehicles : 0 }}
+  </div>
+  <div class="metric-unit">unit</div>
+</div>
       </div>
 
       <!-- Imagem do Veículo Selecionado -->
       <div class="vehicle-image" *ngIf="selectedVehicle">
-        <img [src]="selectedVehicle.imageUrl" [alt]="selectedVehicle.model" class="vehicle-img">
+       <img [src]="selectedVehicle.image_url" [alt]="selectedVehicle.model" class="vehicle-img">
         <h2>{{selectedVehicle.model}} ({{selectedVehicle.year}})</h2>
       </div>
 
@@ -94,14 +101,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{{vehicleData.vin}}</td>
-              <td>{{vehicleData.odometer}} km</td>
-              <td>{{vehicleData.fuelLevel}}%</td>
-              <td>{{vehicleData.status}}</td>
-              <td>{{vehicleData.lat}}</td>
-              <td>{{vehicleData.long}}</td>
-            </tr>
+  <!-- Na tabela de resultados -->
+<tr>
+  <td>{{vehicleData.vin}}</td>
+  <td>{{vehicleData.odometer}} km</td>
+  <td>{{vehicleData.fuel_level}}%</td> <!-- Alterado para fuel_level -->
+  <td>{{vehicleData.status}}</td>
+  <td>{{vehicleData.lat}}</td>
+  <td>{{vehicleData.lng}}</td> <!-- Alterado para long -->
+</tr>
           </tbody>
         </table>
       </div>
