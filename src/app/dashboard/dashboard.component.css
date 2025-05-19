@@ -16,7 +16,7 @@
 
 .section-nav ul {
   display: flex;
- justify-content: center;
+  flex-direction: row-reverse;
   list-style: none;
   margin: 0;
   padding: 0;
