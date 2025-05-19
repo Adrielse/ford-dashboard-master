@@ -12,6 +12,15 @@
     </div>
   </div>
 
+<header class="section-nav-header">
+  <nav class="section-nav">
+    <ul>
+      <li><a (click)="scrollToSection('vehicles-section')" class="nav-link">Veículos</a></li>
+            <li><a (click)="scrollToSection('ford-info-section')" class="nav-link">Informações</a></li>
+            <li><a (click)="scrollToSection('welcome-container')" class="nav-link">Inicio</a></li>
+    </ul>
+  </nav>
+</header>
   <div class="main-content" [class.menu-open]="isNavOpen">
     <button class="menu-toggle" (click)="openNav()">
       <span class="hamburger">&#9776;</span>
@@ -28,6 +37,63 @@
         </div>
       </div>
     </div>
+<section class="ford-info-section">
+      
+      <div class="ford-info-card fade-in-up" #fadeElement>
+        <h2>Inovação</h2>
+        <p>A Ford revolucionou a produção em massa com a introdução da linha de montagem móvel em 1913, tornando os carros acessíveis para milhões.</p>
+      </div>
+      
+      
+      <div class="ford-info-card fade-in-up" #fadeElement>
+        <h2>Tecnologia</h2>
+        <p>Desde o SYNC até os veículos autônomos, a Ford continua na vanguarda da inovação tecnológica no setor automotivo.</p>
+      </div>
+    </section>
+<!-- Adicione esta seção após a seção ford-info-section -->
+<section class="vehicles-section">
+  <h2 class="section-title fade-in-up" #fadeElement>Veículos do Dashboard</h2>
+  
+  <div class="carousel-container fade-in-up" #fadeElement>
+    <button class="carousel-arrow left" (click)="prevSlide()">&#10094;</button>
+    
+    <div class="carousel">
+      <div class="carousel-inner" [style.transform]="'translateX(' + currentSlide * -100 + '%)'">
+        <!-- Slide 1 -->
+         
+        <div class="carousel-item" (click)="navigateToDashboard()">
+          <img src="/images/ranger.png" alt="Ford Ranger">
+          <div class="carousel-caption">
+            <h3>Ford Ranger</h3>
+            <p>Potência e robustez para qualquer terreno</p>
+          </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="carousel-item" (click)="navigateToDashboard()">
+          <img src="/images/mustang.png" alt="Ford Mustang">
+          <div class="carousel-caption">
+            <h3>Ford Mustang</h3>
+            <p>O ícone americano de performance</p>
+          </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="carousel-item" (click)="navigateToDashboard()">
+          <img src="/images/broncoSport.png" alt="Ford Fiesta">
+          <div class="carousel-caption">
+            <h3>Ford Fiesta</h3>
+            <p>Eficiência e diversão ao dirigir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="carousel-arrow right" (click)="nextSlide()">&#10095;</button>
+  </div>
+  
+  <p class="carousel-hint fade-in-up" #fadeElement>Clique em qualquer veículo para acessar o dashboard completo</p>
+</section>
   </div>
 
   <footer class="app-footer">
