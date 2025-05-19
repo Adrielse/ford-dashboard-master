@@ -5,6 +5,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { Vehicle, VehicleData } from '../models/vehicle.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-dashboard',
@@ -183,5 +184,8 @@ searchVehicleData(): void {
   }
   home(): void {
     this.router.navigate(['/home']);
+  }
+  openApi(): void{
+ window.open('https://github.com/Adrielse/ford-backend.git', '_blank');
   }
 }

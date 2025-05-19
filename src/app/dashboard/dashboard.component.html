@@ -80,6 +80,7 @@
       <div class="vin-search">
         <input type="text" [(ngModel)]="searchVin" placeholder="Digite o código VIN">
         <button class="search-btn" (click)="searchVehicleData()">Buscar Dados</button>
+        <button class="search-btn" (click)="openApi()">Instalar Back-end da ford</button>
       </div>
       
       <div *ngIf="errorMessage" class="alert-message">
