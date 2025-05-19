@@ -1,44 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Open+Sans:wght@400;600&display=swap');
 .all-screen {
- background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url('https://s2-autoesporte.glbimg.com/4PffpAMHy_HxP4WkXf5Wva_0MNQ=/0x0:620x415/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/c/4/VbAoMCTE2xdXIzA99iIA/2020-01-20-glab-mustang-janeiro-2020-02-sjd657k.jpg') center/cover no-repeat fixed;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
     min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    position: relative;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; 
 }
 
+
 .title {
-    
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 20px 0 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 30px 0 40px;
+    color: #1B357E;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B00, #1B357E);
+    border-radius: 2px;
+    animation: underlineGrow 0.6s ease-out 0.3s both;
+}
+
+
+.title img {
+    margin-left: 15px;
+    vertical-align: middle;
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+}
+
+
+.title:hover {
+    text-shadow: 0 2px 8px rgba(27, 53, 126, 0.2);
+}
+
+.title:hover img {
+    transform: translateY(-3px) rotate(10deg) scale(1.05);
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineGrow {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 80px;
+        opacity: 1;
+    }
 }
 
 .card-container {
+    flex: 1; 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     padding: 0 10px;
     max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 20px; 
 }
 
 .card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease;
-    min-height: 200px;
-    overflow: hidden;
-    box-sizing: border-box;
-    background-color: #f8f9fa; 
+    min-height: 280px;
+    background: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -86,16 +151,50 @@
 }
 
 .card p {
-    font-size: 16px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
     margin: 8px 0;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+    position: relative;
+    padding-left: 16px;
+}
+.card:nth-child(2) p{
+ margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ffffff;
+    position: relative;
+    padding-left: 16px;
 }
 
 .card p:first-of-type {
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1B357E;
     margin-bottom: 12px;
+    padding-left: 0;
+    text-align: center;
+}
+
+/* Bullet points customizados */
+.card p:not(:first-of-type)::before {
+    content: "•";
+    color: #1B357E;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Espaçamento entre os itens da lista */
+.card p:not(:first-of-type) {
+    margin-bottom: 6px;
+}
+
+/* Efeito hover sutil */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
 }
 
 .btn {
@@ -117,11 +216,11 @@
 }
 .card:nth-child(2) .btn {
     background-color: #f8f8f8;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 .card:nth-child(3) .btn {
     background: linear-gradient(to right, #e34c26); 
-    color: rgb(37, 36, 36);
+    color: rgb(255, 255, 255);
 }
 .card:nth-child(4) .btn {
     background: linear-gradient(rgb(238, 218, 218)); 
@@ -215,13 +314,16 @@
     }
 }
 .site-footer {
+    width: 100%;
+    padding: 20px 0;
     background: #1B357E;
     color: white;
-    padding: 20px 0;
-    margin-top: auto; 
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
+    margin-top: auto;
+    position: relative;
+    left: 0;
+    right: 0;
 }
+
 .footer-content {
   display: flex;
   justify-content: space-between;
