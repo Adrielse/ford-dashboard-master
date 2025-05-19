@@ -96,9 +96,44 @@
  
     </div>
     </section>
-<!-- Adicione esta seção após a seção ford-info-section -->
-<section class="vehicles-section">
- 
+
+<section class="vehicles-section fade-in-up" #fadeElement>
+  <div class="section-header">
+    <h2>Conheça Nossa Linha de Veículos no Dashboard</h2>
+    <p>Descubra a excelência Ford em cada modelo</p>
+  </div>
+  
+  <!-- Carrossel -->
+  <div class="carrossel-container">
+    <div class="carrossel-wrapper">
+      <div class="carrossel-inner" [style.transform]="'translateX(-' + (currentVehicleIndex * 100) + '%)'">
+        <div class="carrossel-item" *ngFor="let vehicle of fordVehicles">
+          <div class="vehicle-card">
+            <div class="vehicle-image">
+              <img [src]="vehicle.imageUrl" [alt]="vehicle.name" onerror="this.src='https://via.placeholder.com/800x400?text=Ford+Vehicle'">
+            </div>
+            <div class="vehicle-info">
+              <h3>{{ vehicle.name }}</h3>
+              <p>{{ vehicle.description }}</p>
+              <ul>
+                <li *ngFor="let spec of vehicle.specs">{{ spec }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carrossel-arrow prev" (click)="prevVehicle()">❮</button>
+    <button class="carrossel-arrow next" (click)="nextVehicle()">❯</button>
+
+    <div class="carrossel-indicators">
+      <button *ngFor="let vehicle of fordVehicles; let i = index" 
+              [class.active]="i === currentVehicleIndex"
+              (click)="goToVehicle(i)">
+      </button>
+    </div>
+  </div>
 </section>
   </div>
 

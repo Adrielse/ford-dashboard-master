@@ -16,6 +16,60 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit,AfterViewInit {
+ currentVehicleIndex = 0;
+  prevVehicle(): void {
+    this.currentVehicleIndex = (this.currentVehicleIndex > 0) ? this.currentVehicleIndex - 1 : this.fordVehicles.length - 1;
+  }
+
+  nextVehicle(): void {
+    this.currentVehicleIndex = (this.currentVehicleIndex < this.fordVehicles.length - 1) ? this.currentVehicleIndex + 1 : 0;
+  }
+
+  goToVehicle(index: number): void {
+    this.currentVehicleIndex = index;
+  }
+ fordVehicles = [
+    {
+      id: 1,
+      name: 'broncoSport',
+      imageUrl: 'images/broncoSport.png',
+      description: 'A broncoSport Carro para sua famila, combinando robustez e tecnologia.',
+      specs: [
+        'Motor 2.0 Bi-Turbo Diesel',
+        'Tração 4x4',
+        'Sistema SYNC 4 com tela de 12"',
+        'Assistência de Permanência em Faixa'
+      ]
+    },
+    {
+      id: 2,
+      name: 'Ford Mustang Mach-E',
+      imageUrl: 'images/mustang.png',
+      description: 'O futuro elétrico do lendário Mustang, com desempenho e autonomia impressionantes.',
+      specs: [
+        '100% Elétrico',
+        'Até 540 km de autonomia',
+        'Aceleração 0-100 km/h em 3.7s',
+        'Tecnologia Ford Co-Pilot360'
+      ]
+    },
+    {
+      id: 3,
+      name: 'Ford Territory',
+      imageUrl: 'images/territory.png',
+      description: 'SUV médio com espaço, conforto e tecnologia para toda a família.',
+      specs: [
+        'Motor 1.5 EcoBoost',
+        'Câmbio Automático de 7 marchas',
+        'Sistema SYNC 3 com comando de voz',
+        'Assistência de Estacionamento'
+      ]
+    }
+  ];
+
+
+
+
    errorMessage: string = '';
     isNavOpen = false;
   searchControl = new FormControl();
