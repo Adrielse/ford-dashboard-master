@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   searchControl = new FormControl();
   loading = false;
   
-  // Remova os arrays mockados e inicialize como vazios
+
   vehicles: Vehicle[] = [];
   selectedVehicle: Vehicle | null = null;
   vehicleData: VehicleData | null = null;

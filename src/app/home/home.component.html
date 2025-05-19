@@ -6,93 +6,99 @@
       <img src="/images/ford.png" class="nav-logo" alt="Ford Logo">
     </div>
     <div class="nav-links">
-      <a routerLink="/home" class="active" routerLinkActive="active">Home</a>
-      <a routerLink="/dashboard"  routerLinkActive="active">Dashboard</a>
+      <a routerLink="/home" class="active" routerLinkActive="active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+</svg>  Home</a>
+      <a routerLink="/dashboard"  routerLinkActive="active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
+  <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
+  <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0"/>
+</svg>  Dashboard</a>
       <a (click)=" logout()" class="logout-link">Logout</a>
     </div>
   </div>
 
 <header class="section-nav-header">
+  <!-- Botão do menu toggle à esquerda -->
+  <button class="menu-toggle" (click)="openNav()">
+    <span class="hamburger">&#9776;</span>
+  </button>
+  
+  <!-- Menu principal à direita -->
   <nav class="section-nav">
     <ul>
+      <li><a (click)="scrollToSection('welcome-container')" class="nav-link">Inicio</a></li>
+       <li><a (click)="scrollToSection('ford-info-section')" class="nav-link">Dados Gerais</a></li>
       <li><a (click)="scrollToSection('vehicles-section')" class="nav-link">Veículos</a></li>
-            <li><a (click)="scrollToSection('ford-info-section')" class="nav-link">Informações</a></li>
-            <li><a (click)="scrollToSection('welcome-container')" class="nav-link">Inicio</a></li>
+     
+      
     </ul>
   </nav>
 </header>
   <div class="main-content" [class.menu-open]="isNavOpen">
-    <button class="menu-toggle" (click)="openNav()">
-      <span class="hamburger">&#9776;</span>
-    </button>
 
-    <div class="welcome-container">
-      <div class="welcome-card">
-        <div class="welcome-header">Sistema de dados FORD</div>
-        <div class="welcome-body">
-          <p style="color: blue; font-size: 30px;" >Seja bem vindo(a)!</p>
-          <p>Dashboard da Ford</p>
-          <P>Monitoramento de Veículos em Tempo Real</P>
-          <p>Acesse dados completos da sua frota Ford</p>
-        </div>
+
+   <div class="welcome-background">
+  <div class="welcome-container">
+    <div class="welcome-card">
+      <div class="welcome-header">Sistema de dados FORD</div>
+      <div class="welcome-body">
+        <h1 class="welcome-title">Bem-vindo ao Dashboard da Ford</h1>
+        <p>Monitoramento de Veículos em Tempo Real</p>
+        <p>Acesse dados completos da sua frota Ford</p>
       </div>
     </div>
-<section class="ford-info-section">
+  </div>
+</div>
+<section class="ford-info-section fade-in-up" #fadeElement>
       
-      <div class="ford-info-card fade-in-up" #fadeElement>
-        <h2>Inovação</h2>
-        <p>A Ford revolucionou a produção em massa com a introdução da linha de montagem móvel em 1913, tornando os carros acessíveis para milhões.</p>
+  <div class="dashboard-container">
+      <div  class="dashboard-header">
+        <h1>Dados Gerais</h1>
       </div>
+      <!-- Cartões de Métricas -->
+      <div class="metrics-cards">
       
-      
-      <div class="ford-info-card fade-in-up" #fadeElement>
-        <h2>Tecnologia</h2>
-        <p>Desde o SYNC até os veículos autônomos, a Ford continua na vanguarda da inovação tecnológica no setor automotivo.</p>
+<!-- Total de Vendas -->
+<div class="metric-card">
+  <div class="metric-header">
+    <h3>Total de Vendas</h3>
+  </div>
+  <div class="metric-value">
+    {{ (currentTotalSales !== undefined ? currentTotalSales : 0) | number }}
+  </div>
+  <div class="metric-unit">{{ selectedVehicle ? 'unit' : 'totais' }}</div>
+</div>
+
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>Conectados</h3>
+          </div>
+      <div class="metric-value">
+  {{connectedVehicles !== undefined ? connectedVehicles : '0'}}
+</div>
+          <div class="metric-unit">unit</div>
+        </div>
+<!-- Software Atualizado -->
+<div class="metric-card">
+  <div class="metric-header">
+    <h3>Software Atualizado</h3>
+  </div>
+  <div class="metric-value">
+    {{ updatedVehicles !== undefined ? updatedVehicles : 0 }}
+  </div>
+  <div class="metric-unit">unit</div>
+</div>
       </div>
+
+  
+
+ 
+    </div>
     </section>
 <!-- Adicione esta seção após a seção ford-info-section -->
 <section class="vehicles-section">
-  <h2 class="section-title fade-in-up" #fadeElement>Veículos do Dashboard</h2>
-  
-  <div class="carousel-container fade-in-up" #fadeElement>
-    <button class="carousel-arrow left" (click)="prevSlide()">&#10094;</button>
-    
-    <div class="carousel">
-      <div class="carousel-inner" [style.transform]="'translateX(' + currentSlide * -100 + '%)'">
-        <!-- Slide 1 -->
-         
-        <div class="carousel-item" (click)="navigateToDashboard()">
-          <img src="/images/ranger.png" alt="Ford Ranger">
-          <div class="carousel-caption">
-            <h3>Ford Ranger</h3>
-            <p>Potência e robustez para qualquer terreno</p>
-          </div>
-        </div>
-        
-        <!-- Slide 2 -->
-        <div class="carousel-item" (click)="navigateToDashboard()">
-          <img src="/images/mustang.png" alt="Ford Mustang">
-          <div class="carousel-caption">
-            <h3>Ford Mustang</h3>
-            <p>O ícone americano de performance</p>
-          </div>
-        </div>
-        
-        <!-- Slide 3 -->
-        <div class="carousel-item" (click)="navigateToDashboard()">
-          <img src="/images/broncoSport.png" alt="Ford Fiesta">
-          <div class="carousel-caption">
-            <h3>Ford Fiesta</h3>
-            <p>Eficiência e diversão ao dirigir</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <button class="carousel-arrow right" (click)="nextSlide()">&#10095;</button>
-  </div>
-  
-  <p class="carousel-hint fade-in-up" #fadeElement>Clique em qualquer veículo para acessar o dashboard completo</p>
+ 
 </section>
   </div>
 

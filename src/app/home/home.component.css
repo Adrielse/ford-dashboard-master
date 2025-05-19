@@ -3,46 +3,400 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}/* Estilo da Seção Principal */
+.ford-info-section {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
 }
 
+.ford-info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #00274C 0%, #FFCB05 50%, #00274C 100%);
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header do Dashboard */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.dashboard-header h1 {
+  color: #00274C;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.dashboard-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #00B4FF;
+  border-radius: 2px;
+}
+
+/* Container dos Cards de Métricas */
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Estilo dos Cards Individuais */
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 39, 76, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid #00274C;
+}
+
+.metric-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 39, 76, 0.2);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.03) 0%, rgba(0, 39, 76, 0.03) 100%);
+  z-index: 0;
+}
+
+/* Cabeçalho do Card */
+.metric-header {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-header h3 {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Valor da Métrica */
+.metric-value {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #00274C;
+  margin: 1rem 0;
+  position: relative;
+  z-index: 1;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: -1px;
+}
+
+/* Unidade da Métrica */
+.metric-unit {
+  color: #777;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Efeitos Especiais */
+.metric-card:nth-child(1):hover {
+  border-top-color: #00B4FF;
+}
+
+.metric-card:nth-child(2):hover {
+  border-top-color: #FFCB05;
+}
+
+.metric-card:nth-child(3):hover {
+  border-top-color: #00C853;
+}
+
+/* Efeito de brilho neon nos cards */
+.metric-card:hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 6s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .ford-info-section {
+    padding: 2rem 1rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .metrics-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .metric-value {
+    font-size: 3rem;
+  }
+}
+
+/* Animação de fade-in */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .section-nav-header {
-  background-color: #073868;
+  background: linear-gradient(135deg, #00274C 0%, #041E42 100%); /* Azul Ford mais escuro */
   padding: 1rem;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #FFCB05; /* Amarelo Ford como borda inferior */
+}
+
+.menu-toggle {
+  background: rgba(255, 203, 5, 0.1); /* Amarelo Ford com transparência */
+  border: 1px solid rgba(255, 203, 5, 0.3);
+  color: #FFCB05; /* Amarelo Ford */
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 203, 5, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 203, 5, 0.2);
 }
 
 .section-nav ul {
   display: flex;
-  flex-direction: row-reverse;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .section-nav .nav-link {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s ease;
-  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .section-nav .nav-link:hover {
-  background-color: #3d566e;
+  color: #FFCB05; /* Amarelo Ford no hover */
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Adicione esta classe para destacar o link ativo */
-.section-nav .nav-link.active {
-  background-color: #1a73e8;
-  color: white;
+.section-nav .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #FFCB05;
+  transition: width 0.3s ease;
 }
+
+.section-nav .nav-link:hover::before {
+  width: 100%;
+}
+
+.section-nav .nav-link.active {
+  color: #FFCB05;
+  background: rgba(0, 39, 76, 0.5);
+}
+
+.section-nav .nav-link.active::before {
+  width: 100%;
+  background: #FFCB05;
+}
+
+/* Efeito especial para itens ativos */
+.section-nav .nav-link.active {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 203, 5, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 203, 5, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 203, 5, 0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .section-nav ul {
+    gap: 0.8rem;
+  }
+  
+  .section-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-nav-header {
+    padding: 0.8rem;
+  }
+  
+  .menu-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.3rem;
+  }
+  
+  .section-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+.section-nav .nav-link:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.section-nav .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #FFCB05; /* Amarelo Ford */
+  transition: width 0.3s ease;
+}
+
+.section-nav .nav-link:hover::before {
+  width: 60%;
+}
+
+/* Estilo ativo aprimorado */
+.section-nav .nav-link.active {
+  color: white;
+  background-color: rgba(0, 80, 158, 0.8); /* Azul Ford mais intenso */
+  box-shadow: 0 4px 8px rgba(0, 80, 158, 0.3);
+}
+
+.section-nav .nav-link.active::before {
+  width: 80%;
+  background: white;
+}
+
+/* Efeito de "ping" quando um link é clicado */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.section-nav .nav-link:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 203, 5, 0.4); /* Amarelo Ford com transparência */
+  animation: ping 0.6s ease-out;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .section-nav ul {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  
+  .section-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
 /* Estilos para o efeito fade-in-up */
 .fade-in-up {
   opacity: 0;
@@ -56,37 +410,41 @@
 }
 /* Estilos do carrossel */
 .vehicles-section {
-  padding: 40px 20px;
-  text-align: center;
-  background-color: #f8f9fa;
-}
-
-/* Estilos para a nova seção */
-.ford-info-section {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.ford-info-card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ford-info-card h2 {
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.ford-info-card p {
-  color: #555;
-  line-height: 1.6;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #ffffff 0%, #f5f7fa 100%);
+  position: relative;
+  overflow: hidden;
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h2 {
+      color: #00274C;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: #FFCB05;
+      }
+    }
+    
+    p {
+      color: #666;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
 }
 .section-title {
   color: #2c3e50;
@@ -96,83 +454,153 @@
 
 .carousel-container {
   position: relative;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
-  height: 450px;
+  padding: 2rem 0;
 }
 
 .carousel {
   width: 100%;
-  height: 100%;
-}
-
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
   overflow: hidden;
-}
-
-.carousel {
-  position: relative;
-  width: 100%;
 }
 
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .carousel-item {
   min-width: 100%;
-  position: relative;
+  box-sizing: border-box;
+  padding: 0 2rem;
 }
 
-.carousel-item img {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: contain;
+.vehicle-card {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 39, 76, 0.1);
 }
 
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  text-align: center;
+.vehicle-image {
+  flex: 1;
+  min-height: 400px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.vehicle-info {
+  flex: 1;
+  padding: 2rem;
+  background: #f8f9fa;
+  
+  h3 {
+    color: #00274C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: 0.5rem 0;
+      color: #00274C;
+      position: relative;
+      padding-left: 1.5rem;
+      
+      &::before {
+        content: '•';
+        color: #FFCB05;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
 }
 
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 39, 76, 0.7);
   color: white;
   border: none;
-  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
   cursor: pointer;
-  font-size: 18px;
   z-index: 10;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #00274C;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  &.prev {
+    left: 1rem;
+  }
+  
+  &.next {
+    right: 1rem;
+  }
 }
 
-.carousel-arrow.left {
-  left: 10px;
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  
+  button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &.active {
+      background: #00274C;
+      transform: scale(1.2);
+    }
+  }
 }
 
-.carousel-arrow.right {
-  right: 10px;
-}
-
-.carousel-hint {
-  text-align: center;
-  margin-top: 10px;
-  color: #666;
+/* Responsividade */
+@media (max-width: 768px) {
+  .vehicle-card {
+    flex-direction: column;
+  }
+  
+  .vehicle-image {
+    min-height: 250px;
+  }
+  
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
 }
 .app-container {
   display: flex;
@@ -275,50 +703,69 @@
     margin-left: 250px;
   }
 
-  .menu-toggle {
-    background: none;
-    border: none;
-    font-size: 38px;
-    cursor: pointer;
-    color: #2c3e50;
-    margin-bottom: 20px;
 
-    &:hover {
-      color: #3498db;
-    }
-  }
 
-  .welcome-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 160px);
-  }
 
-  .welcome-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    overflow: hidden;
+.welcome-background {
+  background-image: url('https://img.freepik.com/fotos-gratis/carro-luxuoso-estacionado-na-estrada-com-um-farol-iluminado-ao-por-do-sol_181624-60607.jpg?semt=ais_hybrid&w=740');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
 
-    .welcome-header {
-      background: #00274C;
-      color: white;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-    }
+.welcome-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 39, 76, 0.7); /* Ford Blue com transparência */
+}
 
-    .welcome-body {
-      padding: 30px;
-      text-align: center;
-      font-size: 18px;
-      color: #333;
-    }
-  }
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.welcome-header {
+  background: #00274C; /* Ford Blue */
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.welcome-body {
+  padding: 30px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.welcome-title {
+  color: #00274C; /* Ford Blue */
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 }
 
 
