@@ -234,6 +234,7 @@
 }
 
 .section-nav .nav-link {
+   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-weight: 600;
@@ -705,6 +706,7 @@
     padding: 20px 0;
 
     a {
+      cursor: pointer;
       padding: 12px 20px;
       text-decoration: none;
       font-size: 16px;
