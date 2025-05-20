@@ -150,3 +150,10 @@
     </div>
   </footer>
 </div>
+<div *ngIf="isFullScreenLoading" class="fullscreen-loading">
+  <div class="loading-content">
+    <img src="/images/ford.png" alt="Ford Logo" class="loading-logo">
+    <div class="spinner"></div>
+    <p>Carregando dados do veículo selecionado...</p>
+  </div>
+</div>

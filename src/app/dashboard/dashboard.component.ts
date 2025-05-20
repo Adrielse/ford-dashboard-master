@@ -15,6 +15,7 @@ import { url } from 'inspector';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  readonly MIN_LOADING_TIME = 800; // Tempo mínimo em milissegundos
   isNavOpen = false;
   errorMessage: string = '';
   searchControl = new FormControl();
@@ -98,8 +99,12 @@ calculateGeneralMetrics(): void {
     0
   );
 }
-selectVehicle(vehicle: Vehicle | null): void {
+  isFullScreenLoading: boolean = false;
+
+ selectVehicle(vehicle: Vehicle | null): void {
+  const startTime = Date.now(); 
   this.selectedVehicle = vehicle;
+  this.isFullScreenLoading = true;
   
   if (vehicle) {
     this.currentTotalSales = vehicle.total_sales;
@@ -107,27 +112,40 @@ selectVehicle(vehicle: Vehicle | null): void {
     this.updatedVehicles = vehicle.software_updated;
     
     if (vehicle.id) {
-      this.loadVehicleData(vehicle.id);
+      this.loadVehicleData(vehicle.id, startTime); 
+    } else {
+      this.isFullScreenLoading = false;
     }
   } else {
     this.calculateGeneralMetrics();
+    this.isFullScreenLoading = false;
   }
 }
-  private loadVehicleData(vehicleId: number): void {
-    this.loading = true;
-    this.vehicleService.getVehicleDataByVehicleId(vehicleId).subscribe({
-      next: (data) => {
-        this.vehicleData = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar dados do veículo:', err);
-        this.errorMessage = 'Erro ao carregar dados do veículo.';
-        this.loading = false;
-      }
-    });
-  }
+private loadVehicleData(vehicleId: number, startTime: number): void {
+  this.vehicleService.getVehicleDataByVehicleId(vehicleId).subscribe({
+    next: (data) => {
+      this.vehicleData = data;
+      this.handleLoadingEnd(startTime); // Chama a função de finalização
+    },
+    error: (err) => {
+      console.error('Erro ao carregar dados do veículo:', err);
+      this.errorMessage = 'Erro ao carregar dados do veículo.';
+      this.handleLoadingEnd(startTime);
+    }
+  });
+}
+private handleLoadingEnd(startTime: number): void {
+  const elapsed = Date.now() - startTime;
+  const remainingTime = Math.max(0, this.MIN_LOADING_TIME - elapsed);
 
+  if (remainingTime > 0) {
+    setTimeout(() => {
+      this.isFullScreenLoading = false;
+    }, remainingTime);
+  } else {
+    this.isFullScreenLoading = false;
+  }
+}
 searchVehicleData(): void {
   this.errorMessage = '';
   
